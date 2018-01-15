@@ -1,51 +1,45 @@
-let db = require('../../config/database');
 const _ = require('lodash');
 const faker = require('faker/locale/pt_BR')
+const path = require('path');
 
+let db = require('../../config/database');
 let api = {}
 
-api.adiciona = (req, res) => {
-    var foto = req.body;
-    delete foto._id;
-    db.insert(foto, function (err, newDoc) {
+api.home = (req, res) => {
+    console.log({ ...path })
+    res.sendFile(path.join(`${__dirname}/index.html`));
+}
+
+api.insert = (req, res) => {
+    let contact = req.body;
+
+    if (!contact) return;
+
+    delete contact._id;
+    db.insert(contact, function (err, newDoc) {
         if (err) return console.log(err);
-        console.log('Adicionado com sucesso: ' + newDoc._id);
+        console.log(`${newDoc._id} success written`);
         res.json(newDoc._id);
     });
 };
 
-api.busca = (req, res) => {
-    db.findOne({ _id: req.params.fotoId }, function (err, doc) {
+api.list = (req, res) => {
+    db.find(req.query).sort({ name: 1 }).exec(function (err, doc) {
         if (err) return console.log(err);
         res.json(doc);
     });
 };
 
-api.atualiza = (req, res) => {
-    console.log('Parâmetro recebido:' + req.params.fotoId);
-    db.update({ _id: req.params.fotoId }, req.body, function (err, numReplaced) {
+api.update = (req, res) => {
+    if (!req.params._id) return;
+
+    db.update({ _id: req.params._id }, req.body, function (err, numReplaced) {
         if (err) return console.log(err);
         if (numReplaced) res.status(200).end();
         res.status(500).end();
-        console.log('Atualizado com sucesso: ' + req.body._id);
+        console.log(`${req.params._id} success updated`);
         res.status(200).end();
     });
-};
-
-api.lista = (req, res) => {
-    db.find({}).sort({ titulo: 1 }).exec(function (err, doc) {
-        if (err) return console.log(err);
-        res.json(doc);
-    });
-};
-
-api.listaPorGrupo = (req, res) => {
-    var grupoId = parseInt(req.params.grupoId);
-    db.find({ grupo: grupoId }, function (err, doc) {
-        if (err) return console.log(err);
-        res.json(doc);
-    });
-
 };
 
 api.remove = (req, res) => {
@@ -58,23 +52,13 @@ api.remove = (req, res) => {
     });
 };
 
-api.listaGrupos = (req, res) => {
+api.search = (req, res) => {
+    if (!req.params._id) return;
 
-    res.json([
-        {
-            _id: 1,
-            nome: 'esporte'
-        },
-        {
-            _id: 2,
-            nome: 'lugares',
-        },
-        {
-            _id: 3,
-            nome: 'animais'
-        }
-    ]);
-
+    db.findOne({ _id: req.params._id }, function (err, doc) {
+        if (err) return console.log(err);
+        res.json(doc);
+    });
 };
 
 api.generate = (req, res) => {
@@ -102,7 +86,7 @@ api.generate = (req, res) => {
 
     res.json({
         success: true,
-        message: `${ qtty } contacts inserted`
+        message: `${qtty} contacts inserted`
     });
 }
 

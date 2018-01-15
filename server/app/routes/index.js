@@ -1,21 +1,24 @@
 var api = require('../api'),
     path = require('path');
 
-module.exports  = function(app) {
-    
+module.exports = function (app) {
+
+    app.route('/v1')
+        .get(api.home)
+
     app.route('/v1/contacts')
-        .post(api.adiciona)
-        .get(api.lista);
+        .post(api.insert)
+        .get(api.list);
 
     app.route('/v1/contacts/:identifier')
         .delete(api.remove)
-        .get(api.busca)
-        .put(api.atualiza);
+        .get(api.search)
+        .put(api.update);
 
     app.route('/v1/generate/:qtty')
-       .post(api.generate)
-               
-    app.all('/*', function(req, res) {
-        res.sendFile(path.join(app.get('clientPath'), 'index.html'));
+        .post(api.generate)
+
+    app.all('/*', (req, res) => {
+        res.redirect('/v1');
     });
 };
