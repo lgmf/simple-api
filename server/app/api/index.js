@@ -6,7 +6,6 @@ let db = require('../../config/database');
 let api = {}
 
 api.home = (req, res) => {
-    console.log({ ...path })
     res.sendFile(path.join(`${__dirname}/index.html`));
 }
 

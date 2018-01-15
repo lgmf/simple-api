@@ -1,5 +1,5 @@
-var api = require('../api'),
-    path = require('path');
+const api = require('../api')
+const path = require('path')
 
 module.exports = function (app) {
 
@@ -16,7 +16,7 @@ module.exports = function (app) {
         .put(api.update);
 
     app.route('/v1/generate/:qtty')
-        .post(api.generate)
+        .get(api.generate)
 
     app.all('/*', (req, res) => {
         res.redirect('/v1');
