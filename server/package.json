@@ -1,0 +1,20 @@
+{
+  "name": "alurapic",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --watch server.js",
+    "clean": "npm cache clean --force"
+  },
+  "author": "lgmf",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "nedb": "^1.8.0",
+    "faker": "^4.1.0",
+    "lodash": "^4.17.4"
+  }
+}
