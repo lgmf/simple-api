@@ -30,24 +30,56 @@ api.list = (req, res) => {
 };
 
 api.update = (req, res) => {
-    if (!req.params._id) return;
+    if (!req.params.identifier)
+        res.json({
+            success: false,
+            message: `parameter identifier can not be null`
+        });
 
-    db.update({ _id: req.params._id }, req.body, function (err, numReplaced) {
-        if (err) return console.log(err);
-        if (numReplaced) res.status(200).end();
-        res.status(500).end();
-        console.log(`${req.params._id} success updated`);
-        res.status(200).end();
+    db.update({ _id: req.params.identifier }, req.body, function (err, numReplaced) {
+        if (err)
+            res.json({
+                success: false,
+                message: err
+            });
+
+        if (numReplaced)
+            res.status(200).json({
+                success: true,
+                message: `${req.params.identifier} success updated`
+            });
+
+        res.status(500).end({
+            success: false,
+            message: `can not find contact ${req.params.identifier}`
+        });
     });
 };
 
 api.remove = (req, res) => {
+    if (!req.params.identifier)
+        res.json({
+            success: false,
+            message: `parameter identifier can not be null`
+        });
 
-    db.remove({ _id: req.params.fotoId }, {}, function (err, numRemoved) {
-        if (err) return console.log(err);
-        console.log('removido com sucesso');
-        if (numRemoved) res.status(200).end();
-        res.status(500).end();
+    db.remove({ _id: req.params.identifier }, {}, function (err, numRemoved) {
+        if (err)
+            res.json({
+                success: false,
+                message: err
+            });
+
+        if (numRemoved)
+            res.status(200).json({
+                success: true,
+                message: `${req.params.identifier} success removed`
+            });
+
+        res.status(500).end({
+            success: false,
+            message: `can not find contact ${req.params.identifier}`
+        });
     });
 };
 
