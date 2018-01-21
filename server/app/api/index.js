@@ -52,20 +52,20 @@ api.remove = (req, res) => {
 };
 
 api.search = (req, res) => {
-    if (!req.params._id) return;
+    if (!req.params.identifier) res.status(404).end();
 
-    db.findOne({ _id: req.params._id }, function (err, doc) {
+    db.findOne({ _id: req.params.identifier }, function (err, doc) {
         if (err) return console.log(err);
         res.json(doc);
     });
 };
 
 api.generate = (req, res) => {
-    let qtty = !req.params.qtty ? 10 : req.params.qtty;
+    let count = !req.params.count ? 10 : req.params.count;
 
     db.remove({}, { multi: true });
 
-    _.times(qtty, (index) => {
+    _.times(count, (index) => {
         let contact = {
             "firstName": faker.name.firstName(),
             "lastName": faker.name.lastName(),
@@ -85,7 +85,7 @@ api.generate = (req, res) => {
 
     res.json({
         success: true,
-        message: `${qtty} contacts inserted`
+        message: `${count} contacts inserted`
     });
 }
 
