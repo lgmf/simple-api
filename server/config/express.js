@@ -1,6 +1,6 @@
 var express = require('express')
     ,app = express()
-    ,cors = cors() 
+    ,cors = require('cors')
     ,bodyParser = require('body-parser')
     ,routes = require('../app/routes')
     ,path =  require('path');
