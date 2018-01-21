@@ -85,10 +85,13 @@ api.generate = (req, res) => {
             "firstName": faker.name.firstName(),
             "lastName": faker.name.lastName(),
             "email": faker.internet.email(),
-            "avatar": faker.internet.avatar(),
             "gender": (index % 2 == 0) ? "m" : "f",
             "info": {
-                "company": faker.company.companyName()
+                "avatar": faker.internet.avatar(),
+                "company": faker.company.companyName(),
+                "address": faker.address.streetAddress(),
+                "phone": faker.phone.phoneNumber(),
+                "comments": faker.lorem.sentences()
             },
             "isFavorite": faker.random.boolean()
         }
