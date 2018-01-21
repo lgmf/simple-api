@@ -7,5 +7,5 @@
     -- cd server
     -- npm install
     -- npm start
-    -- Acesse http://http://localhost:3000/v1
+    -- Acesse http://localhost:3000/v1
     
