@@ -52,10 +52,25 @@ api.remove = (req, res) => {
 };
 
 api.search = (req, res) => {
-    if (!req.params.identifier) res.status(404).end();
+    if (!req.params.identifier)
+        res.json({
+            success: false,
+            message: `parameter identifier can not be null`
+        });
 
     db.findOne({ _id: req.params.identifier }, function (err, doc) {
-        if (err) return console.log(err);
+        if (err)
+            res.json({
+                success: false,
+                message: err
+            });
+
+        if (!doc)
+            res.json({
+                success: false,
+                message: `Contact can not be found. Maybe the identifier is wrong!`
+            });
+
         res.json(doc);
     });
 };
