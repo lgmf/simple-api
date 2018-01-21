@@ -1,8 +1,107 @@
 <!DOCTYPE html>
 
+<html>
+
 <head>
     <title>Simple JSON Restful API</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+        .container {
+            margin-top: 1em;
+            line-height: 2;
+        }
+
+        .card {
+            margin-top: 1em;
+        }
+
+        .card-header,
+        .badge {
+            background-color: #1a587d;
+            color: #fff;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            border-top: 1px solid #1a587d;
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5em 0.5em;
+            margin-top: 1em;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Schedule API</h1>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+        <a class="navbar-brand" href="/">API de Contatos</a>        
+        <a class="navbar-brand pull-rigth" href="https://github.com/lgmf/simple-api" target="_blank">
+            <img src="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png" width="30" height="30" class="d-inline-block align-top" alt=""> Acesse o projeto no Github
+        </a>
+    </nav>
+
+    <div class="container">
+
+        <div class="card">
+            <div class="card-header">
+                Endereço da API
+            </div>
+            <div class="card-body">
+                <p>http://localhost:3000/v1</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                Manipulando os dados
+            </div>
+            <div class="card-body">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <span class="badge">GET</span> /contacts
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge">GET</span> /contacts/{id}
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge">POST</span> /contacts
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge">PUT</span> /contacts/{id}
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge">DELETE</span> /contacts/{id}
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                Buscando dados específicos
+            </div>
+            <div class="card-body">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <span class="badge">GET</span> /contacts?firstName="João"
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <span class="text-muted info">&copy; Luiz Guilherme - Treinamento de JavaSript 2018</span>
+        <span class="text-muted version">API de Contatos v1.0.0</span>
+    </footer>
 </body>
+
+</html>
