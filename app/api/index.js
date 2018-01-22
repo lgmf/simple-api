@@ -23,7 +23,7 @@ api.insert = (req, res) => {
 };
 
 api.list = (req, res) => {
-    db.find(req.query).sort({ name: 1 }).exec(function (err, doc) {
+    db.find(req.query).sort({ firstName: 1 }).exec(function (err, doc) {
         if (err) return console.log(err);
         res.json(doc);
     });
@@ -108,7 +108,8 @@ api.search = (req, res) => {
 };
 
 api.generate = (req, res) => {
-    let count = !req.params.count ? 10 : req.params.count;
+    console.log(req.params.count)
+    let count = (req.params.count==null ||req.params.count==undefined) ? 10 : req.params.count;
 
     db.remove({}, { multi: true });
 

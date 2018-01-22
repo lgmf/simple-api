@@ -15,7 +15,7 @@ module.exports = function (app) {
         .get(api.search)
         .put(api.update);
 
-    app.route('/v1/generate')
+    app.route('/v1/generate/:count')
         .get(api.generate)
 
     app.all('/*', (req, res) => {
