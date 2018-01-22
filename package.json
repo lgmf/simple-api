@@ -17,5 +17,8 @@
     "faker": "^4.1.0",
     "lodash": "^4.17.4",
     "nedb": "^1.8.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.14.11"
   }
 }
