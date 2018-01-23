@@ -1,13 +1,13 @@
 const _ = require('lodash');
-const faker = require('faker/locale/pt_BR')
+const faker = require('faker/locale/pt_BR');
 const path = require('path');
 
 let db = require('../../config/database');
-let api = {}
+let api = {};
 
 api.home = (req, res) => {
     res.sendFile(path.join(`${__dirname}/index.html`));
-}
+};
 
 api.insert = (req, res) => {
     let contact = req.body;
@@ -23,7 +23,11 @@ api.insert = (req, res) => {
 };
 
 api.list = (req, res) => {
-    db.find(req.query).sort({ firstName: 1 }).exec(function (err, doc) {
+    const find = {};
+    Object.keys(req.query).forEach(key => {
+        find[key] = new RegExp(req.query[key], 'i');
+    });
+    db.find(find).sort({ firstName: 1 }).exec(function (err, doc) {
         if (err) return console.log(err);
         res.json(doc);
     });
@@ -108,7 +112,7 @@ api.search = (req, res) => {
 };
 
 api.generate = (req, res) => {
-    console.log(req.params.count)
+    console.log(req.params.count);
     let count = (req.params.count==null ||req.params.count==undefined) ? 10 : req.params.count;
 
     db.remove({}, { multi: true });
@@ -127,7 +131,7 @@ api.generate = (req, res) => {
                 "comments": faker.lorem.sentences()
             },
             "isFavorite": faker.random.boolean()
-        }
+        };
         db.insert(contact, function (err, newDoc) {
             if (err) return console.log(err);
             console.log('Adicionado com sucesso: ' + newDoc._id);
@@ -138,7 +142,7 @@ api.generate = (req, res) => {
         success: true,
         message: `${count} contacts inserted`
     });
-}
+};
 
 
 module.exports = api;
