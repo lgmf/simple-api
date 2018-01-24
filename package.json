@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon --watch app server.js",
+    "start": "nodemon --watch app --watch server.js",
     "clean": "npm cache clean --force"
   },
   "author": "lgmf",
