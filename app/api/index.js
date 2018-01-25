@@ -94,7 +94,7 @@ api.remove = (req, res) => {
                 message: `${req.params.identifier} success removed`
             });
 
-        res.status(500).end({
+        res.status(500).json({
             success: false,
             message: `can not find contact ${req.params.identifier}`
         });
