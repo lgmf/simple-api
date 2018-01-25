@@ -1,4 +1,4 @@
-// const _ = require('lodash');
+const _ = require('lodash');
 const faker = require('faker/locale/pt_BR');
 const path = require('path');
 
