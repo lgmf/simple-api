@@ -1,10 +1,9 @@
-const api = require('../api')
-const path = require('path')
+const api = require('../api');
 
 module.exports = function (app) {
 
     app.route('/v1')
-        .get(api.home)
+        .get(api.home);
 
     app.route('/v1/contacts')
         .post(api.insert)
@@ -16,9 +15,9 @@ module.exports = function (app) {
         .put(api.update);
 
     app.route('/v1/generate/:count')
-        .get(api.generate)
+        .get(api.generate);
 
-    app.all('/*', (req, res) => {
+    app.all('*', (req, res) => {
         res.redirect('/v1');
     });
 };
