@@ -1,4 +1,4 @@
-const _ = require('lodash');
+// const _ = require('lodash');
 const faker = require('faker/locale/pt_BR');
 const path = require('path');
 
@@ -23,11 +23,23 @@ api.insert = (req, res) => {
 };
 
 api.list = (req, res) => {
-    const find = {};
-    Object.keys(req.query).forEach(key => {
-        find[key] = new RegExp(req.query[key], 'i');
-    });
-    db.find(find).sort({ firstName: 1 }).exec(function (err, doc) {
+
+    const search = req.query;
+    const limit = (search.limit) ? parseInt(search.limit) : 10;
+    const skip = (search.page) ? parseInt(search.page) - 1 : 0;
+    const sort = { firstName: 1 };
+
+    //TODO: Sort object from request
+    // const sortBy = (search.propertyName) ? search.propertyName : 'firstName';
+    // const direction = (search.direction) ? search.direction : 1;
+    // Object.defineProperty(sort, propertyName, { value: direction });
+
+    delete search.page;
+    delete search.limit;
+
+    Object.keys(req.query).forEach(key => search[key] = new RegExp(req.query[key], 'i'));
+
+    db.find(search).skip(skip * limit).limit(limit).sort(sort).exec(function (err, doc) {
         if (err) return console.log(err);
         res.json(doc);
     });
@@ -67,9 +79,11 @@ api.remove = (req, res) => {
             message: `parameter identifier can not be null`
         });
 
-    db.remove({ _id: req.params.identifier }, {}, function (err, numRemoved) {
+    console.log(req.params.identifier)
+
+    db.remove({ _id: req.params.identifier }, { multi: false }, function (err, numRemoved) {
         if (err)
-            res.json({
+            res.status(500).json({
                 success: false,
                 message: err
             });
@@ -113,7 +127,7 @@ api.search = (req, res) => {
 
 api.generate = (req, res) => {
     console.log(req.params.count);
-    let count = (req.params.count==null ||req.params.count==undefined) ? 10 : req.params.count;
+    let count = (req.params.count == null || req.params.count == undefined) ? 10 : req.params.count;
 
     db.remove({}, { multi: true });
 

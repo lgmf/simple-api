@@ -4,7 +4,8 @@
 
 <head>
     <title>Treinamento JS</title>
-    <link rel="icon" href="https://i0.wp.com/www.forlogic.net/wp-content/uploads/2017/03/cropped-grupofavicon16x16.png?fit=32%2C32" sizes="32x32">
+    <link rel="icon" href="https://i0.wp.com/www.forlogic.net/wp-content/uploads/2017/03/cropped-grupofavicon16x16.png?fit=32%2C32"
+        sizes="32x32">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
     <style>
@@ -36,7 +37,7 @@
             display: flex;
             justify-content: space-between;
             padding: 0.5em 0.5em;
-            margin-top: 1em;            
+            margin-top: 1em;
         }
     </style>
 </head>
@@ -58,23 +59,53 @@
             </div>
             <div class="card-body">
                 <ul class="list-group">
-                    <li class="list-group-item">
-                        <span class="badge">GET</span> /contacts
+                    <li class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">
+                                <i class="badge">GET</i> /contacts
+                            </h5>
+                            <!-- <small>&#x25B2</small> -->
+                        </div>
                     </li>
                     <li class="list-group-item">
-                        <span class="badge">GET</span> /generate/[count] (Ex.: count = 10)
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">
+                                <i class="badge">GET</i> /contacts/{id}
+                            </h5>
+                            <!-- <small>&#x25B2</small> -->
+                        </div>
                     </li>
                     <li class="list-group-item">
-                        <span class="badge">GET</span> /contacts/{id}
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">
+                                <i class="badge">POST</i> /contacts
+                            </h5>
+                            <!-- <small>&#x25B2</small> -->
+                        </div>
                     </li>
                     <li class="list-group-item">
-                        <span class="badge">POST</span> /contacts
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">
+                                <i class="badge">PUT</i> /contacts/{id}
+                            </h5>
+                            <!-- <small>&#x25B2</small> -->
+                        </div>
                     </li>
                     <li class="list-group-item">
-                        <span class="badge">PUT</span> /contacts/{id}
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">
+                                <i class="badge">DELETE</i> /contacts/{id}
+                            </h5>
+                            <!-- <small>&#x25B2</small> -->
+                        </div>
                     </li>
                     <li class="list-group-item">
-                        <span class="badge">DELETE</span> /contacts/{id}
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">
+                                <i class="badge">GET</i> /generate/[count]
+                            </h5>
+                            <!-- <small>&#x25B2</small> -->
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -87,7 +118,28 @@
             <div class="card-body">
                 <ul class="list-group">
                     <li class="list-group-item">
-                        <span class="badge">GET</span> /contacts?{campo}={valor} Exemplo: /contacts?firstName=joão
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">
+                                <i class="badge">GET</i> /contacts?[campo]=[valor]
+                            </h5>
+                            <!-- <small>&#x25B2</small> -->
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">
+                                <i class="badge">GET</i> /contacts?[page]=[valor]
+                            </h5>
+                            <!-- <small>&#x25B2</small> -->
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">
+                                <i class="badge">GET</i> /contacts?[limit]=[valor]
+                            </h5>
+                            <!-- <small>&#x25B2</small> -->
+                        </div>                        
                     </li>
                 </ul>
             </div>
@@ -98,6 +150,42 @@
         <span class="text-muted info">&copy; Luiz Guilherme - Treinamento de JavaSript 2018</span>
         <span class="text-muted version">API de Contatos v1.0.0</span>
     </footer>
+
+    <!-- TODO: Collapsible code elements -->
+    <!-- <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        const arrowUp = '&#x25B2';
+        const arrowDown = '&#x25BC;';
+
+        $(document).ready(() => {
+            listItens = Array.from($('.list-group-item'));
+            listItens.forEach((item) => {
+                $(item)
+                    .click((event) => {
+                        debugger
+                        let me = event.target;
+                        $(me).next('.collapse').collapse('toggle');
+                    })
+                    .mouseover((event) => {
+                        let me = event.target;
+                        $(me)
+                            .next('small')
+                            .text(arrowDown)
+                    })
+                    .mouseleave((event) => {
+                        let me = event.target;
+                        $(me)
+                            .next('small')
+                            .text('')
+                    })
+            })
+        })
+    </script> -->
 </body>
 
 </html>
