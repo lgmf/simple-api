@@ -155,7 +155,13 @@ api.generate = (req, res) => {
             "isFavorite": faker.random.boolean()
         };
         db.insert(contact, function (err, newDoc) {
-            if (err) return console.log(err);
+            if (err)
+                res.status(500).json({
+                    success: false,
+                    message: `generate concts error: ${err}`
+                });
+
+
             console.log('Adicionado com sucesso: ' + newDoc._id);
         });
     });
