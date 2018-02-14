@@ -4,7 +4,7 @@
  
 ## setting the API
   ```
-    -- git clone https://github.com/lgmf/simple-api.git <br>
+    -- git clone https://github.com/lgmf/simple-api.git
     -- cd simple-api
     -- npm install --save
     -- npm run dev
